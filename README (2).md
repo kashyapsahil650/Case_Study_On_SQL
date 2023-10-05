@@ -38,8 +38,7 @@ Three key datasets for this case study
 5. Which item was the most popular for each customer?
 6. Which item was purchased first by the customer after they became a member?
 7. Which item was purchased just before the customer became a member?
-10. What is the total items and amount spent for each member before they became a member?
-11. If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?
-12. In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?
+8. What is the total items and amount spent for each member before they became a member?
+
   
 Click [here](https://github.com/kashyapsahil650/Case_Study_On_SQL/blob/main/Danny's_Diner%20Solution.md) to view the solution of the case study!
