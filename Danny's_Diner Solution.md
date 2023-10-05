@@ -10,8 +10,7 @@
 6. Which item was purchased first by the customer after they became a member?
 7. Which item was purchased just before the customer became a member?
 8. What is the total items and amount spent for each member before they became a member?
-9. If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?
-10. In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?
+
 ***
 
 ###  1. What is the total amount each customer spent at the restaurant?
@@ -254,78 +253,6 @@ ORDER BY customer_id;
 
 ***
 
-###  9.  If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?
-<details>
-  <summary>Click here for the solution</summary>
-  
-```sql
-SELECT
-  customer_id,
-  SUM( CASE 
-	WHEN product_name = 'sushi' THEN (price * 20) ELSE (price * 10)
-		END
-	) AS total_points
-FROM #Membership_validation
-WHERE order_date >= join_date
-GROUP BY customer_id
-ORDER BY customer_id;
-```
-</details>
-
-#### Output:
-|customer_id	|total_points|
-|:----------:|:-----------:|
-|A|	510|
-|B|	440|
-
-###  10. In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January
-Asssumption: Points is rewarded only after the customer joins in the membership program
-#### Steps
-1. Find the program_last_date which is 7 days after a customer joins the program (including their join date)
-2. Determine the customer points for each transaction and for members with a membership
-		a. During the first week of the membership -> points = price*20 irrespective of the purchase item
-		b. Product = Sushi -> and order_date is not within a week of membership -> points = price*20
-		c. Product = Not Sushi -> and order_date is not within a week of membership -> points = price*10
-3. Conditions in WHERE clause
-  	a. order_date <= '2021-01-31' -> Order must be placed before 31st January 2021
-   	b. order_date >= join_date -> Points awarded to only customers with a membership	
-
-<details>
-  <summary>Click here for the solution</summary>
-  
-```sql
-with program_last_day_cte as 
-(
-select join_date ,
-		Dateadd(dd,7,join_date) as program_last_date,
-		customer_id
-from members
-)
-SELECT s.customer_id,
-       SUM(CASE
-               WHEN order_date BETWEEN join_date AND program_last_date THEN price*10*2
-               WHEN order_date NOT BETWEEN join_date AND program_last_date
-                    AND product_name = 'sushi' THEN price*10*2
-               WHEN order_date NOT BETWEEN join_date AND program_last_date
-                    AND product_name != 'sushi' THEN price*10
-           END) AS customer_points
-FROM				MENU as m
-INNER JOIN			sales as s on m.product_id = s.product_id
-INNER JOIN			program_last_day_cte as k on k.customer_id = s.customer_id
-AND				order_date <='2021-01-31'
-AND				order_date >=join_date
-GROUP BY			s.customer_id
-ORDER BY			s.customer_id;
-```
-</details>
-
-#### Output:
-|customer_id	|customer_points|
-|:----------:|:-------------:|
-|A|	1020|
-|B|	440|
-
-***
 
 
 Click [here](https://github.com/kashyapsahil650/Case_Study_On_SQL#challenge-case-studies) to move back to the 8-Week-SQL-Challenge repository!
