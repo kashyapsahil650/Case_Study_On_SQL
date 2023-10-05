@@ -12,8 +12,7 @@ Each case-study folder contains the following files
 - Solutions are coded in **MYSQL**
 
 ## Challenge case studies
-* 🍜[Case Study #1 - Danny's Diner](https://github.com/kashyapsahil650/123456dinnerchicken-/tree/main/Case%20Study%20%23%201%20-%20Danny's%20Diner)
-* 🍕[Case Study #2 - Pizza Runner](https://github.com/kashyapsahil650/123456dinnerchicken-/tree/main/Case%20Study%20%23%202%20-%20Pizza%20Runner)
+* 🍜[Case Study #1 - Danny's Diner](https://github.com/kashyapsahil650/Case_Study_On_SQL/blob/main/Danny's_Diner%20Solution.md)
 
 
 
