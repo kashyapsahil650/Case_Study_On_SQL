@@ -328,6 +328,6 @@ ORDER BY			s.customer_id;
 ***
 
 
-Click [here](https://github.com/kashyapsahil650/123456dinnerchicken-/tree/main) to move back to the 8-Week-SQL-Challenge repository!
+Click [here](https://github.com/kashyapsahil650/Case_Study_On_SQL#challenge-case-studies) to move back to the 8-Week-SQL-Challenge repository!
 
 
